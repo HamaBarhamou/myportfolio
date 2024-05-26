@@ -4,18 +4,26 @@
 
 {% block content %}
   <div class="container mt-5">
-    <h1 class="mb-4">{{ project.title }}</h1>
-    <div class="card mb-4">
-      <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
-      <div class="card-body">
-        <h5 class="card-title">Description</h5>
-        <p class="card-text">{{ project.description }}</p>
-        <div class="d-flex justify-content-between">
-          <a href="{{ project.demo_link }}" class="btn btn-primary" target="_blank">View Demo</a>
-          <a href="{{ project.source_code_link }}" class="btn btn-secondary" target="_blank">Source Code</a>
+    <h1 class="mb-4 text-center">{{ project.title }}</h1>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="width: 100%; height: auto;">
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Description</h5>
+          <p class="card-text">{{ project.description }}</p>
+          <div class="d-flex justify-content-between">
+            <a href="{{ project.demo_link }}" class="btn btn-primary" target="_blank">View Demo</a>
+            <a href="{{ project.source_code_link }}" class="btn btn-secondary" target="_blank">Source Code</a>
+          </div>
         </div>
       </div>
     </div>
-    <a href="{% url 'portfolio:home' %}" class="btn btn-outline-secondary">Back to Home</a>
+    <div class="text-center">
+      <a href="{% url 'portfolio:home' %}" class="btn btn-outline-secondary">Back to Home</a>
+    </div>
   </div>
 {% endblock %}
