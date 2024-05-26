@@ -12,9 +12,8 @@
             <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
             <div class="card-body">
               <h5 class="card-title">{{ project.title }}</h5>
-              <p class="card-text">{{ project.description|truncatewords:20 }}</p>
-              <a href="{{ project.demo_link }}" class="btn btn-primary">View Demo</a>
-              <a href="{{ project.source_code_link }}" class="btn btn-secondary">Source Code</a>
+              <p class="card-text">{{ project.description|truncatechars:100 }}</p>
+              <a href="{% url 'portfolio:project_detail' project.id %}" class="btn btn-primary">View Details</a>
             </div>
           </div>
         </div>

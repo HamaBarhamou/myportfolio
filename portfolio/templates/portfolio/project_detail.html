@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Project Details{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">{{ project.title }}</h1>
+    <div class="card mb-4">
+      <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+      <div class="card-body">
+        <p class="card-text">{{ project.description }}</p>
+        <a href="{{ project.demo_link }}" class="btn btn-primary">View Demo</a>
+        <a href="{{ project.source_code_link }}" class="btn btn-secondary">Source Code</a>
+      </div>
+    </div>
+    <a href="{% url 'portfolio:home' %}" class="btn btn-outline-secondary">Back to Home</a>
+  </div>
+{% endblock %}
