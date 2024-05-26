@@ -1,16 +1,51 @@
 {% extends 'base.html' %}
 
+{% block title %}Home{% endblock %}
+
 {% block content %}
-  <h1>Welcome to My Portfolio</h1>
-  <div class="projects">
-    {% for project in projects %}
-      <div class="project">
-        <h2>{{ project.title }}</h2>
-        <img src="{{ project.image.url }}" alt="{{ project.title }}">
-        <p>{{ project.description }}</p>
-        <a href="{{ project.demo_link }}">View Demo</a>
-        <a href="{{ project.source_code_link }}">Source Code</a>
-      </div>
-    {% endfor %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Welcome to My Portfolio</h1>
+    <div class="row">
+      {% for project in projects %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.title }}</h5>
+              <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+              <a href="{{ project.demo_link }}" class="btn btn-primary">View Demo</a>
+              <a href="{{ project.source_code_link }}" class="btn btn-secondary">Source Code</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if projects.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ projects.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% endif %}
+        {% for num in projects.paginator.page_range %}
+          {% if projects.number == num %}
+            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+          {% elif num > projects.number|add:'-3' and num < projects.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if projects.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ projects.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
   </div>
 {% endblock %}
