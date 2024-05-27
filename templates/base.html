@@ -10,6 +10,9 @@
         body {
             background-color: #1a1a1a;
             color: #e6e6e6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .navbar, .footer {
             background-color: #000;
@@ -53,11 +56,18 @@
             border-color: #00ff00;
             color: #000;
         }
+        .container {
+            flex: 1;
+        }
+        .footer {
+            background-color: #000;
+            padding: 1rem 0;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Menu -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="{% url 'portfolio:home' %}">My Portfolio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -83,7 +93,7 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-5 pt-5">
         {% block content %}
         {% endblock %}
     </div>
