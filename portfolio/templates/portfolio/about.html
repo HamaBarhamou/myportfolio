@@ -6,14 +6,26 @@
   <div class="container mt-5">
     <h1 class="mb-4 text-center">{{ about.title }}</h1>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 text-center mb-4">
         {% if about.image %}
-          <img src="{{ about.image.url }}" class="img-fluid rounded" alt="{{ about.title }}">
+          <img src="{{ about.image.url }}" class="img-fluid rounded-circle shadow-lg" alt="{{ about.title }}" style="max-width: 200px;">
         {% endif %}
       </div>
       <div class="col-md-8">
-        <div class="content">
+        <div class="content p-4 bg-dark rounded shadow-lg">
           {{ about.content|safe }}
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center mb-4">Follow Me</h2>
+        <div class="d-flex justify-content-center">
+          {% for link in social_links %}
+            <a href="{{ link.url }}" target="_blank" class="btn btn-outline-primary mx-2">
+              <i class="{{ link.icon_class }}"></i> {{ link.name }}
+            </a>
+          {% endfor %}
         </div>
       </div>
     </div>
