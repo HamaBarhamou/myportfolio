@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Service, About, SocialLink
+from .models import Project, Skill, Service, About, SocialLink, Event
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
@@ -46,3 +46,6 @@ class AboutAdmin(admin.ModelAdmin):
 @admin.register(SocialLink)
 class SocialLinkAdmin(admin.ModelAdmin):
     list_display = ("name", "url", "icon_class")
+
+
+admin.site.register(Event)

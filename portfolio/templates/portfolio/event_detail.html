@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ event.title }}</h1>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          {% if event.image %}
+            <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+            <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+            <a href="{% url 'portfolio:event_list' %}" class="btn btn-secondary">Back to Events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
