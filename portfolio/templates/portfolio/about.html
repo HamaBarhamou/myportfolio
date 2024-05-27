@@ -4,10 +4,17 @@
 
 {% block content %}
   <div class="container mt-5">
-    <h1 class="mb-4 text-center">About Me</h1>
+    <h1 class="mb-4 text-center">{{ about.title }}</h1>
     <div class="row">
-      <div class="col-md-12">
-        <p>Here you can add your personal information, your bio, your professional background, and anything else you want to share about yourself.</p>
+      <div class="col-md-4">
+        {% if about.image %}
+          <img src="{{ about.image.url }}" class="img-fluid rounded" alt="{{ about.title }}">
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <div class="content">
+          {{ about.content|safe }}
+        </div>
       </div>
     </div>
   </div>

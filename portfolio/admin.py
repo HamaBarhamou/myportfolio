@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Service
+from .models import Project, Skill, Service, About
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
@@ -27,3 +27,17 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ("name", "description", "image")
+
+
+class AboutAdminForm(forms.ModelForm):
+    content = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = About
+        fields = "__all__"
+
+
+@admin.register(About)
+class AboutAdmin(admin.ModelAdmin):
+    form = AboutAdminForm
+    list_display = ("title", "image")

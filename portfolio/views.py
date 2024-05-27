@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.core.paginator import Paginator
-from .models import Project, Service, Skill
+from .models import Project, Service, Skill, About
 
 
 def home(request):
@@ -27,7 +27,8 @@ def project_detail(request, project_id):
 
 
 def about(request):
-    return render(request, "portfolio/about.html")
+    about_content = About.objects.first()
+    return render(request, "portfolio/about.html", {"about": about_content})
 
 
 def contact(request):
