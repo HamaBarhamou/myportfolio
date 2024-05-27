@@ -51,3 +51,10 @@ class SocialLink(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class VisitorCount(models.Model):
+    count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.count)

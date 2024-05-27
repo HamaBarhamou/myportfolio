@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.core.paginator import Paginator
-from .models import Project, Service, Skill, About, SocialLink
+from .models import Project, Service, Skill, About, SocialLink, VisitorCount
 
 
 def home(request):
+    visitor_count = VisitorCount.objects.first()
     project_list = Project.objects.all()
     skills = Skill.objects.all()
     services = Service.objects.all()
@@ -19,6 +20,7 @@ def home(request):
         request,
         "portfolio/home.html",
         {
+            "visitor_count": visitor_count.count if visitor_count else 0,
             "projects": projects,
             "skills": skills,
             "services": services,
