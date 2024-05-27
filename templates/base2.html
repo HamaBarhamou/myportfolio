@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e6e6e6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+        .navbar, .footer {
+            background-color: #000;
+        }
+        .navbar-brand, .nav-link, .footer span {
+            color: #00ff00 !important;
+        }
+        .btn-outline-primary {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+        .btn-outline-primary:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .card {
+            background-color: #333;
+            border: none;
+        }
+        .card-title, .card-text {
+            color: #00ff00;
+        }
+        .progress-bar {
+            background-color: #00ff00;
+        }
+        .social-icons a {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+        .social-icons a:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .pagination .page-link {
+            color: #00ff00;
+            background-color: #333;
+            border-color: #00ff00;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #00ff00;
+            border-color: #00ff00;
+            color: #000;
+        }
+        .container {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            margin-top: 80px; /* Adjust this if your navbar height is different */
+        }
+        .footer {
+            background-color: #000;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Matrix effect */
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .matrix canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'portfolio:home' %}">My Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio:contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="matrix">
+        <canvas id="matrixCanvas"></canvas>
+    </div>
+
+    <div class="container mt-5 pt-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">
+                © 2024 My Portfolio. Projet open source. 
+                <a href="https://github.com/HamaBarhamou/myportfolio.git" target="_blank" style="color: #00ff00;">Voir le dépôt sur GitHub</a>.
+            </span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Matrix effect script
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array.from({ length: columns }).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = `${fontSize}px monospace`;
+
+            drops.forEach((y, i) => {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const x = i * fontSize;
+                ctx.fillText(text, x, y * fontSize);
+
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            });
+        }
+
+        setInterval(drawMatrix, 33);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
