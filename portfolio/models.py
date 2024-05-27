@@ -12,3 +12,19 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+    proficiency = models.IntegerField(help_text="Enter a value from 1 to 100")
+
+    def __str__(self):
+        return self.name
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

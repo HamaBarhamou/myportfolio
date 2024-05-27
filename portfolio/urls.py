@@ -7,4 +7,6 @@ app_name = "portfolio"
 urlpatterns = [
     path("", views.home, name="home"),
     path("project/<int:project_id>/", views.project_detail, name="project_detail"),
+    path("about/", views.about, name="about"),
+    path("contact/", views.contact, name="contact"),
 ]
