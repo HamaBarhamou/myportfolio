@@ -14,7 +14,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ event.title }}</h5>
             <p class="card-text">{{ event.description|safe }}</p>
-            <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+            <p class="card-text"><small class="text-muted">{{ event.start_date }} - {{ event.end_date }} - {{ event.location }}</small></p>
             <a href="{% url 'portfolio:event_list' %}" class="btn btn-secondary">Back to Events</a>
           </div>
         </div>

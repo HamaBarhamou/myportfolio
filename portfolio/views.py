@@ -78,9 +78,9 @@ def contact(request):
 
 def event_list(request):
     today = date.today()
-    past_events = Event.objects.filter(date__lt=today)
-    ongoing_events = Event.objects.filter(date=today)
-    future_events = Event.objects.filter(date__gt=today)
+    past_events = Event.objects.filter(end_date__lt=today)
+    ongoing_events = Event.objects.filter(start_date__lte=today, end_date__gte=today)
+    future_events = Event.objects.filter(start_date__gt=today)
     return render(
         request,
         "portfolio/event_list.html",

@@ -63,7 +63,8 @@ class VisitorCount(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = RichTextField()
-    date = models.DateField()
+    start_date = models.DateField()
+    end_date = models.DateField()
     location = models.CharField(max_length=200)
     image = models.ImageField(upload_to="events/", blank=True, null=True)
 
