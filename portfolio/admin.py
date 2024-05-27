@@ -48,4 +48,16 @@ class SocialLinkAdmin(admin.ModelAdmin):
     list_display = ("name", "url", "icon_class")
 
 
-admin.site.register(Event)
+class EventAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Event
+        fields = "__all__"
+
+
+class EventAdmin(admin.ModelAdmin):
+    form = EventAdminForm
+
+
+admin.site.register(Event, EventAdmin)
