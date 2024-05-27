@@ -9,30 +9,45 @@
     <!-- Skills Section -->
     <div class="row mb-4">
       <div class="col-md-12">
-        <h2 class="mb-4">My Skills</h2>
-        <ul class="list-group">
+        <h2 class="mb-4 text-center">My Skills</h2>
+        <div class="row justify-content-center">
           {% for skill in skills %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              {{ skill.name }}
-              <span class="badge badge-primary badge-pill">{{ skill.proficiency }}%</span>
-            </li>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 text-center">
+                {% if skill.image %}
+                  <img src="{{ skill.image.url }}" class="card-img-top mx-auto mt-3" alt="{{ skill.name }}" style="width: 50px; height: 50px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ skill.name }}</h5>
+                  <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: {{ skill.proficiency }}%;" aria-valuenow="{{ skill.proficiency }}" aria-valuemin="0" aria-valuemax="100">{{ skill.proficiency }}%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
     </div>
-
     <!-- Services Section -->
     <div class="row mb-4">
       <div class="col-md-12">
         <h2 class="mb-4">My Services</h2>
-        <ul class="list-group">
+        <div class="row">
           {% for service in services %}
-            <li class="list-group-item">
-              <h5>{{ service.name }}</h5>
-              <p>{{ service.description }}</p>
-            </li>
+            <div class="col-md-4 mb-4">
+              <div class="card h-100">
+                {% if service.image %}
+                  <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.name }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ service.name }}</h5>
+                  <p class="card-text">{{ service.description|safe|truncatewords:30 }}</p>
+                </div>
+              </div>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
     </div>
 

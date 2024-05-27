@@ -17,6 +17,7 @@ class Project(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     proficiency = models.IntegerField(help_text="Enter a value from 1 to 100")
+    image = models.ImageField(upload_to="skills/", blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -25,6 +26,7 @@ class Skill(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    image = models.ImageField(upload_to="services/", blank=True, null=True)
 
     def __str__(self):
         return self.name
