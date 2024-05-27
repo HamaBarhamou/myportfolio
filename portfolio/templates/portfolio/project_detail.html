@@ -14,7 +14,7 @@
       <div class="col-md-6 mb-4">
         <div class="card-body">
           <h5 class="card-title">Description</h5>
-          <p class="card-text">{{ project.description }}</p>
+          <p class="card-text">{{ project.description|safe }}</p>
           <div class="d-flex justify-content-between">
             <a href="{{ project.demo_link }}" class="btn btn-primary" target="_blank">View Demo</a>
             <a href="{{ project.source_code_link }}" class="btn btn-secondary" target="_blank">Source Code</a>
