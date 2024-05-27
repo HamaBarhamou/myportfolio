@@ -5,22 +5,71 @@
 {% block content %}
   <div class="container mt-5">
     <h1 class="mb-4 text-center">Events</h1>
-    <div class="row">
-      {% for event in events %}
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            {% if event.image %}
-              <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">{{ event.title }}</h5>
-              <p class="card-text">{{ event.description|safe|truncatewords:30 }}</p>
-              <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+    
+    <!-- Ongoing Events Section -->
+    {% if ongoing_events %}
+      <h2 class="mb-4 text-center">Ongoing Events</h2>
+      <div class="row">
+        {% for event in ongoing_events %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              {% if event.image %}
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{ event.description|safe|truncatewords:30 }}</p>
+                <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+                <a href="{% url 'portfolio:event_detail' event.id %}" class="btn btn-primary">View Details</a>
+              </div>
             </div>
-            <a href="{% url 'portfolio:event_detail' event.id %}" class="btn btn-primary">View Details</a>
           </div>
-        </div>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Future Events Section -->
+    {% if future_events %}
+      <h2 class="mb-4 text-center">Future Events</h2>
+      <div class="row">
+        {% for event in future_events %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              {% if event.image %}
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{ event.description|safe|truncatewords:30 }}</p>
+                <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+                <a href="{% url 'portfolio:event_detail' event.id %}" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Past Events Section -->
+    {% if past_events %}
+      <h2 class="mb-4 text-center">Past Events</h2>
+      <div class="row">
+        {% for event in past_events %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              {% if event.image %}
+                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" style="height: 200px; object-fit: cover;">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ event.title }}</h5>
+                <p class="card-text">{{ event.description|safe|truncatewords:30 }}</p>
+                <p class="card-text"><small class="text-muted">{{ event.date }} - {{ event.location }}</small></p>
+                <a href="{% url 'portfolio:event_detail' event.id %}" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 {% endblock %}

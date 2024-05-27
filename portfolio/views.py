@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from datetime import date
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.core.mail import send_mail
@@ -76,8 +77,19 @@ def contact(request):
 
 
 def event_list(request):
-    events = Event.objects.all()
-    return render(request, "portfolio/event_list.html", {"events": events})
+    today = date.today()
+    past_events = Event.objects.filter(date__lt=today)
+    ongoing_events = Event.objects.filter(date=today)
+    future_events = Event.objects.filter(date__gt=today)
+    return render(
+        request,
+        "portfolio/event_list.html",
+        {
+            "past_events": past_events,
+            "ongoing_events": ongoing_events,
+            "future_events": future_events,
+        },
+    )
 
 
 def event_detail(request, event_id):
