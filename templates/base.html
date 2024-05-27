@@ -5,42 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #1a1a1a;
+            color: #e6e6e6;
         }
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+        .navbar, .footer {
+            background-color: #000;
         }
-        .content-wrapper {
-            flex: 1;
-            padding-top: 56px; /* Height of the fixed navbar */
+        .navbar-brand, .nav-link, .footer span {
+            color: #00ff00 !important;
         }
-        .footer {
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 1rem 0;
+        .btn-outline-primary {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+        .btn-outline-primary:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .card {
+            background-color: #333;
+            border: none;
+        }
+        .card-title, .card-text {
+            color: #00ff00;
+        }
+        .progress-bar {
+            background-color: #00ff00;
+        }
+        .social-icons a {
+            color: #00ff00;
+            border-color: #00ff00;
+        }
+        .social-icons a:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .pagination .page-link {
+            color: #00ff00;
+            background-color: #333;
+            border-color: #00ff00;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #00ff00;
+            border-color: #00ff00;
+            color: #000;
         }
     </style>
 </head>
 <body>
     <!-- Navigation Menu -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{% url 'portfolio:home' %}">My Portfolio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'portfolio:home' %}">Home</a>
                 </li>
@@ -60,17 +83,17 @@
         </div>
     </nav>
 
-    <div class="content-wrapper container mt-4">
+    <div class="container mt-4">
         {% block content %}
         {% endblock %}
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
             <span class="text-muted">
                 © 2024 My Portfolio. Projet open source. 
-                <a href="https://github.com/HamaBarhamou/myportfolio.git" target="_blank">Voir le dépôt sur GitHub</a>.
+                <a href="https://github.com/HamaBarhamou/myportfolio.git" target="_blank" style="color: #00ff00;">Voir le dépôt sur GitHub</a>.
             </span>
         </div>
     </footer>

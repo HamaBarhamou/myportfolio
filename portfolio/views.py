@@ -2,13 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.core.paginator import Paginator
-from .models import Project, Service, Skill, About
+from .models import Project, Service, Skill, About, SocialLink
 
 
 def home(request):
     project_list = Project.objects.all()
     skills = Skill.objects.all()
     services = Service.objects.all()
+    social_links = SocialLink.objects.all()
     paginator = Paginator(project_list, 6)  # 6 projets par page
 
     page_number = request.GET.get("page")
@@ -17,7 +18,12 @@ def home(request):
     return render(
         request,
         "portfolio/home.html",
-        {"projects": projects, "skills": skills, "services": services},
+        {
+            "projects": projects,
+            "skills": skills,
+            "services": services,
+            "social_links": social_links,
+        },
     )
 
 

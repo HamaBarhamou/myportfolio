@@ -39,3 +39,15 @@ class About(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SocialLink(models.Model):
+    name = models.CharField(max_length=50)
+    url = models.URLField(max_length=200)
+    icon_class = models.CharField(
+        max_length=50,
+        help_text="Enter the CSS class for the icon (e.g., 'fab fa-twitter')",
+    )
+
+    def __str__(self):
+        return self.name

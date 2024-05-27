@@ -8,14 +8,12 @@
     <!-- Introduction Section -->
     <div class="row mb-4">
       <div class="col-md-12 text-center">
-        <h2>Hello, I'm a Full Stack Developer</h2>
+        <h2>Hello, I'm ISSAKA HAMA Barhamou, a Full Stack Developer</h2>
         <p>Welcome to my portfolio. Here you can find my skills, services, projects, and how to contact me.</p>
         <div class="social-icons mt-3">
-          <a href="#" target="_blank" class="btn btn-outline-primary mx-1"><i class="fab fa-twitter"></i> Twitter</a>
-          <a href="https://linkedin.com/in/your_linkedin_handle" target="_blank" class="btn btn-outline-primary mx-1"><i class="fab fa-linkedin"></i> LinkedIn</a>
-          <a href="https://wa.me/your_whatsapp_number" target="_blank" class="btn btn-outline-primary mx-1"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-          <a href="https://facebook.com/your_facebook_handle" target="_blank" class="btn btn-outline-primary mx-1"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="https://mastodon.social/@your_mastodon_handle" target="_blank" class="btn btn-outline-primary mx-1"><i class="fab fa-mastodon"></i> Mastodon</a>
+          {% for link in social_links %}
+            <a href="{{ link.url }}" target="_blank" class="btn btn-outline-primary mx-1"><i class="{{ link.icon_class }}"></i> {{ link.name }}</a>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -47,7 +45,7 @@
     <!-- Services Section -->
     <div class="row mb-4">
       <div class="col-md-12">
-        <h2 class="mb-4">My Services</h2>
+        <h2 class="mb-4 text-center">My Services</h2>
         <div class="row">
           {% for service in services %}
             <div class="col-md-4 mb-4">
@@ -68,7 +66,8 @@
 
     <!-- Projects Section -->
     <div class="row mb-4">
-      <div class="col-md-12">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-4 text-center">My Projects</h2>
         <div class="btn-group" role="group" aria-label="Category filter">
           <a href="{% url 'portfolio:home' %}" class="btn btn-outline-primary">All</a>
           {% for category in categories %}
