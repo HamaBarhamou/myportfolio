@@ -34,7 +34,11 @@ def project_detail(request, project_id):
 
 def about(request):
     about_content = About.objects.first()
-    return render(request, "portfolio/about.html", {"about": about_content})
+    return render(
+        request,
+        "portfolio/about.html",
+        {"about": about_content, "social_links": SocialLink.objects.all()},
+    )
 
 
 def contact(request):
@@ -53,4 +57,8 @@ def contact(request):
             return render(request, "portfolio/contact_success.html")
     else:
         form = ContactForm()
-    return render(request, "portfolio/contact.html", {"form": form})
+    return render(
+        request,
+        "portfolio/contact.html",
+        {"form": form, "social_links": SocialLink.objects.all()},
+    )
