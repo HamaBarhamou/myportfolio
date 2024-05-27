@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.core.paginator import Paginator
@@ -50,12 +52,19 @@ def contact(request):
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             message = form.cleaned_data["message"]
-            send_mail(
-                f"Message from {name}",
-                message,
-                email,
-                ["your_email@example.com"],  # Replace with your email address
-            )
+            try:
+                send_mail(
+                    f"Message from {name}",
+                    message,
+                    email,
+                    ["hamabarhamou@gmail.com"],
+                )
+            except BadHeaderError:
+                return HttpResponse("Invalid header found.")
+            except ConnectionRefusedError:
+                return HttpResponse(
+                    "Failed to connect to the email server. Please try again later."
+                )
             return render(request, "portfolio/contact_success.html")
     else:
         form = ContactForm()
