@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Service, About, SocialLink, Event
+from .models import Project, Skill, Service, About, SocialLink, Event, GalleryImage
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
@@ -56,8 +56,15 @@ class EventAdminForm(forms.ModelForm):
         fields = "__all__"
 
 
+class GalleryImageInline(admin.TabularInline):
+    model = GalleryImage
+    extra = 1
+
+
 class EventAdmin(admin.ModelAdmin):
     form = EventAdminForm
+    inlines = [GalleryImageInline]
 
 
 admin.site.register(Event, EventAdmin)
+admin.site.register(GalleryImage)

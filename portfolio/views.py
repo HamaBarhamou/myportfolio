@@ -5,7 +5,16 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from .forms import ContactForm
 from django.core.paginator import Paginator
-from .models import Project, Service, Skill, About, SocialLink, VisitorCount, Event
+from .models import (
+    Project,
+    Service,
+    Skill,
+    About,
+    SocialLink,
+    VisitorCount,
+    Event,
+    GalleryImage,
+)
 
 
 def home(request):
@@ -95,3 +104,16 @@ def event_list(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, "portfolio/event_detail.html", {"event": event})
+
+
+def gallery(request):
+    images = GalleryImage.objects.all()
+    return render(request, "portfolio/gallery.html", {"images": images})
+
+
+def event_gallery(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    images = event.gallery_images.all()
+    return render(
+        request, "portfolio/event_gallery.html", {"event": event, "images": images}
+    )

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }} Gallery{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ event.title }} Gallery</h1>
+    <div class="row">
+      {% for image in images %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.caption }}">
+            <div class="card-body">
+              <p class="card-text">{{ image.caption }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'portfolio:event_detail' event.id %}" class="btn btn-secondary">Back to Event Details</a>
+  </div>
+{% endblock %}

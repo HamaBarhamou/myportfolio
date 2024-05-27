@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">Gallery</h1>
+    <div class="row">
+      {% for image in images %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.caption }}">
+            <div class="card-body">
+              <p class="card-text">{{ image.caption }}</p>
+              <p class="card-text"><small class="text-muted">Event: {{ image.event.title }}</small></p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -70,3 +70,14 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class GalleryImage(models.Model):
+    event = models.ForeignKey(
+        Event, related_name="gallery_images", on_delete=models.CASCADE
+    )
+    image = models.ImageField(upload_to="gallery/")
+    caption = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return self.caption or f"Image for {self.event.title}"
