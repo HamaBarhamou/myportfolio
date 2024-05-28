@@ -9,6 +9,9 @@
     <div class="row">
       <div class="col-md-8 offset-md-2">
         <div class="card">
+          {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
           <div class="card-body">
             {{ post.content|safe }}
           </div>
