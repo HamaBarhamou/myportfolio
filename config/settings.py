@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -165,3 +165,7 @@ else:
     EMAIL_USE_TLS = True
     EMAIL_HOST_USER = config("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=Csv())
