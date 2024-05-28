@@ -128,4 +128,26 @@
       </ul>
     </nav>
   </div>
+
+  <!-- Recent Posts Section -->
+  <div class="row mb-4">
+    <div class="col-md-12 text-center">
+      <h2 class="mb-4">Recent Blog Posts</h2>
+    </div>
+    {% for post in recent_posts %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content|safe|truncatewords:30 }}</p>
+            <a href="{% url 'blog:post_detail' post.id %}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

@@ -15,6 +15,7 @@ from .models import (
     Event,
     GalleryImage,
 )
+from blog.models import Post
 
 
 def home(request):
@@ -23,6 +24,8 @@ def home(request):
     skills = Skill.objects.all()
     services = Service.objects.all()
     social_links = SocialLink.objects.all()
+    recent_posts = Post.objects.order_by("-created_at")[:5]
+
     paginator = Paginator(project_list, 6)  # 6 projets par page
 
     page_number = request.GET.get("page")
@@ -37,6 +40,7 @@ def home(request):
             "skills": skills,
             "services": services,
             "social_links": social_links,
+            "recent_posts": recent_posts,
         },
     )
 
