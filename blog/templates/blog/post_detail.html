@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">{{ post.title }}</h1>
+    <p class="text-center"><small class="text-muted">By {{ post.author }} on {{ post.created_at }}</small></p>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-body">
+            {{ post.content|safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Back to Blog</a>
+    </div>
+  </div>
+{% endblock %}
