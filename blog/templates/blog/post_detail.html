@@ -4,46 +4,92 @@
 
 {% block content %}
   <div class="container mt-5">
+    <!-- Post Title -->
     <h1 class="mb-4 text-center">{{ post.title }}</h1>
-    <p class="text-center"><small class="text-muted">By {{ post.author }} on {{ post.created_at }}</small></p>
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="card">
+    
+    <!-- Post Metadata -->
+    <p class="text-center text-muted">
+      By <span class="font-weight-bold">{{ post.author }}</span> on {{ post.created_at|date:"F d, Y" }}
+    </p>
+    
+    <!-- Post Content -->
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card mb-4">
           {% if post.image %}
             <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
           {% endif %}
           <div class="card-body">
-            {{ post.content|safe }}
+            <div class="post-content">
+              {{ post.content|safe }}
+            </div>
           </div>
-        </div>
-        <div class="comments mt-4">
-          <h5>Comments</h5>
-          {% for comment in comments %}
-            <div class="comment mb-2">
-              <p><strong>{{ comment.name }}</strong> ({{ comment.created_at }}):</p>
-              <p>{{ comment.body }}</p>
-            </div>
-          {% empty %}
-            <p>No comments yet.</p>
-          {% endfor %}
-        </div>
-        <div class="comment-form mt-4">
-          <h5>Leave a comment</h5>
-          {% if new_comment %}
-            <div class="alert alert-success" role="alert">
-              Your comment has been added successfully!
-            </div>
-          {% endif %}
-          <form method="post" action=".">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
         </div>
       </div>
     </div>
+    
+    <!-- Comments Section -->
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Comments</h5>
+          </div>
+          <div class="card-body">
+            {% if comments %}
+              {% for comment in comments %}
+                <div class="media mb-3">
+                  <div class="media-body">
+                    <h6 class="mt-0">{{ comment.name }} <small class="text-muted">on {{ comment.created_at|date:"F d, Y H:i" }}</small></h6>
+                    <p>{{ comment.body }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <p class="text-center">No comments yet. Be the first to comment!</p>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!-- Comment Form -->
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Leave a Comment</h5>
+          </div>
+          <div class="card-body">
+            {% if new_comment %}
+              <div class="alert alert-success" role="alert">
+                Your comment has been added successfully!
+              </div>
+            {% endif %}
+            <form method="post" action=".">
+              {% csrf_token %}
+              {{ comment_form.as_p }}
+              <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Back to Blog Link -->
     <div class="text-center mt-4">
       <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">Back to Blog</a>
     </div>
   </div>
+
+  <!-- Additional CSS for Styling -->
+  <style>
+    .post-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+    }
+    .media-body h6 {
+      font-size: 1.1rem;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+    }
+  </style>
 {% endblock %}
