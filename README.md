@@ -13,18 +13,40 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 
 ## Features
 
-- Home page with an introduction, skills, services, and projects.
-- Contact form with email functionality.
-- Unique visitor counter.
-- Responsive design using Bootstrap.
-- Animation effects for a dynamic user experience.
-- Footer with links to LinkedIn and GitHub.
-- Admin panel to manage content including skills, services, projects, and contact messages.
-- Blog section with posts and details.
-- Display of the 5 latest blog posts on the home page.
-- Pagination for projects on the home page.
-- Social media links with icons.
-- Filter projects by category.
+### Home page with an introduction, skills, services, and projects
+![Home Page](screenshots/home_page.png)
+
+### Contact form with email functionality
+![Contact Form](screenshots/contact_form.png)
+
+### Unique visitor counter
+![Visitor Counter](screenshots/visitor_counter.png)
+
+### Responsive design using Bootstrap
+![Responsive Design](screenshots/responsive_design.png)
+
+### Animation effects for a dynamic user experience
+
+### Footer with links to LinkedIn and GitHub
+![Footer](screenshots/footer.png)
+
+### Admin panel to manage content including skills, services, projects, and contact messages
+![Admin Panel](screenshots/admin_panel.png)
+
+### Blog section with posts and details
+![Blog Section](screenshots/blog_section.png)
+
+### Display of the 5 latest blog posts on the home page
+![Latest Blog Posts](screenshots/latest_blog_posts.png)
+
+### Pagination for projects on the home page
+![Project Pagination](screenshots/project_pagination.png)
+
+### Social media links with icons
+![Social Media Links](screenshots/social_media_links.png)
+
+### Filter projects by category
+![Project Filter](screenshots/project_filter.png)
 
 ## Installation
 
