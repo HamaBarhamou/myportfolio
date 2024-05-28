@@ -41,7 +41,7 @@
                 <div class="media mb-3">
                   <div class="media-body">
                     <h6 class="mt-0">{{ comment.name }} <small class="text-muted">on {{ comment.created_at|date:"F d, Y H:i" }}</small></h6>
-                    <p>{{ comment.body }}</p>
+                    <p>{{ comment.body|safe }}</p>
                   </div>
                 </div>
               {% endfor %}
