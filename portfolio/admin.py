@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Project, Skill, Service, About, SocialLink, Event, GalleryImage
+from .models import (
+    Project,
+    Skill,
+    Service,
+    About,
+    SocialLink,
+    Event,
+    GalleryImage,
+    ContactMessage,
+)
 from ckeditor.widgets import CKEditorWidget
 from django import forms
 
@@ -68,3 +77,5 @@ class EventAdmin(admin.ModelAdmin):
 
 admin.site.register(Event, EventAdmin)
 admin.site.register(GalleryImage)
+
+admin.site.register(ContactMessage)

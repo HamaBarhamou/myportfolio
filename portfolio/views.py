@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import date
 from django.core.mail import send_mail, BadHeaderError
+from smtplib import SMTPAuthenticationError, SMTPException
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from .forms import ContactForm
@@ -14,6 +15,7 @@ from .models import (
     VisitorCount,
     Event,
     GalleryImage,
+    ContactMessage,
 )
 from blog.models import Post
 
@@ -73,12 +75,10 @@ def contact(request):
                     email,
                     ["hamabarhamou@gmail.com"],
                 )
-            except BadHeaderError:
-                return HttpResponse("Invalid header found.")
-            except ConnectionRefusedError:
-                return HttpResponse(
-                    "Failed to connect to the email server. Please try again later."
-                )
+            except (BadHeaderError, ConnectionRefusedError, SMTPAuthenticationError):
+                # Enregistrer le message dans la base de données si l'envoi échoue
+                ContactMessage.objects.create(name=name, email=email, message=message)
+                # return HttpResponse("Failed to send email. Your message has been saved and will be reviewed shortly.")
             return render(request, "portfolio/contact_success.html")
     else:
         form = ContactForm()
