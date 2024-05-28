@@ -16,6 +16,30 @@
             {{ post.content|safe }}
           </div>
         </div>
+        <div class="comments mt-4">
+          <h5>Comments</h5>
+          {% for comment in comments %}
+            <div class="comment mb-2">
+              <p><strong>{{ comment.name }}</strong> ({{ comment.created_at }}):</p>
+              <p>{{ comment.body }}</p>
+            </div>
+          {% empty %}
+            <p>No comments yet.</p>
+          {% endfor %}
+        </div>
+        <div class="comment-form mt-4">
+          <h5>Leave a comment</h5>
+          {% if new_comment %}
+            <div class="alert alert-success" role="alert">
+              Your comment has been added successfully!
+            </div>
+          {% endif %}
+          <form method="post" action=".">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="text-center mt-4">
