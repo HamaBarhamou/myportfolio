@@ -19,6 +19,12 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 - Responsive design using Bootstrap.
 - Animation effects for a dynamic user experience.
 - Footer with links to LinkedIn and GitHub.
+- Admin panel to manage content including skills, services, projects, and contact messages.
+- Blog section with posts and details.
+- Display of the 5 latest blog posts on the home page.
+- Pagination for projects on the home page.
+- Social media links with icons.
+- Filter projects by category.
 
 ## Installation
 
@@ -77,9 +83,10 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 
 ## Usage
 
-- **Home Page:** Displays an introduction, skills, services, projects, and visitor counter.
+- **Home Page:** Displays an introduction, skills, services, projects, visitor counter, and the 5 latest blog posts.
 - **Contact Page:** Allows users to send messages directly from the site.
 - **Admin Panel:** Manage content including skills, services, projects, and contact messages.
+- **Blog Section:** Create, update, and delete blog posts.
 
 ## Contributing
 
