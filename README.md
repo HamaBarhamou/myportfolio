@@ -13,10 +13,10 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 
 ## Features
 
-### About page with an introduction, skills, services, and projects
+### About page with an introduction yourself
 ![About Page](screenshots/home_page.png)
 
-### Home page with an introduction yourself
+### Home page with an introduction, skills, services, and projects
 ![Home Page](screenshots/home1.png)
 ![Home Page](screenshots/home2.png)
 ![Home Page](screenshots/home3.png)
@@ -50,8 +50,8 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 ### Social media links with icons
 ![Social Media Links](screenshots/social_media_links.png)
 
-### Filter projects by category
-![Project Filter](screenshots/project_filter.png)
+### Filter Post by name
+![Post Filter](screenshots/poste_filter.png)
 
 ## Installation
 
