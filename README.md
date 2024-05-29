@@ -13,8 +13,13 @@ Welcome to my portfolio project! This is a Django-based web application showcasi
 
 ## Features
 
-### Home page with an introduction, skills, services, and projects
-![Home Page](screenshots/home_page.png)
+### About page with an introduction, skills, services, and projects
+![About Page](screenshots/home_page.png)
+
+### Home page with an introduction yourself
+![Home Page](screenshots/home1.png)
+![Home Page](screenshots/home2.png)
+![Home Page](screenshots/home3.png)
 
 ### Contact form with email functionality
 ![Contact Form](screenshots/contact_form.png)
