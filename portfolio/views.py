@@ -22,7 +22,7 @@ from blog.models import Post
 
 def home(request):
     visitor_count = VisitorCount.objects.first()
-    project_list = Project.objects.all()
+    project_list = Project.objects.all().order_by("-date_created")
     skills = Skill.objects.all()
     services = Service.objects.all()
     social_links = SocialLink.objects.all()
